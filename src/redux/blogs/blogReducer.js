@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 const initialState = [
     {
         id: 1,
@@ -37,7 +39,7 @@ const initialState = [
         date: '28 April 2014',
         timeToRead: '9 min read',
         author: 'Babul Akter',
-        authorImg: 'https://i.ibb.co/R0YHRH4/authimg-2.jpg',
+        authorImg: 'https://i.ibb.co/Mg6S1GW/authimg-2.jpg',
     },
     {
         id: 5,

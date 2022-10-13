@@ -38,6 +38,15 @@ function Blogs() {
         }
     };
 
+    const searchFn = (blog) => {
+        const { search } = filters;
+        if (search === undefined || search === '') {
+            return true;
+        }
+
+        return blog.title.toLowerCase().includes(search?.toLowerCase());
+    };
+
     const filterByCategoryHandler = (category) => {
         dispatch(filterByCategory(category));
     };
@@ -66,6 +75,7 @@ function Blogs() {
                     {blogs
                         .filter(categoryFilterFn)
                         .filter(authorFilterFn)
+                        .filter(searchFn)
                         .map((blog) => (
                             <Blog
                                 key={blog.id}

@@ -1,8 +1,9 @@
-import { FILTER_BY_AUTHOR, FILTER_BY_CATEGORY } from './actionType';
+import { FILTER_BY_AUTHOR, FILTER_BY_CATEGORY, FILTER_BY_SEARCH } from './actionType';
 
 const initialState = {
     category: 'all',
     author: 'all',
+    search: '',
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -17,6 +18,13 @@ const filterReducer = (state = initialState, action) => {
                 ...state,
                 author: action.payload,
             };
+
+        case FILTER_BY_SEARCH:
+            return {
+                ...state,
+                search: action.payload,
+            };
+
         default:
             return state;
     }
