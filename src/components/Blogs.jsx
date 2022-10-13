@@ -1,9 +1,50 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterByAuthor, filterByCategory } from '../redux/filters/actions';
 import Blog from './Blog';
 
 function Blogs() {
     const blogs = useSelector((state) => state.blogs);
+    const filters = useSelector((state) => state.filters);
+    const dispatch = useDispatch();
+
+    const categoryFilterFn = (blog) => {
+        const { category } = filters;
+        switch (category) {
+            case 'development':
+                return blog.category === 'development';
+
+            case 'design':
+                return blog.category === 'design';
+
+            case 'various':
+                return blog.category === 'various';
+
+            default:
+                return true;
+        }
+    };
+    const authorFilterFn = (blog) => {
+        const { author } = filters;
+        switch (author) {
+            case 'Learn with Sumit':
+                return blog.author === 'Learn with Sumit';
+
+            case 'Babul Akter':
+                return blog.author === 'Babul Akter';
+
+            default:
+                return true;
+        }
+    };
+
+    const filterByCategoryHandler = (category) => {
+        dispatch(filterByCategory(category));
+    };
+
+    const filterByAuthorHandler = (author) => {
+        dispatch(filterByAuthor(author));
+    };
 
     return (
         <section className="relative bg-gray-50 pt-8 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-16 lg:px-8">
@@ -22,9 +63,17 @@ function Blogs() {
                 </div>
 
                 <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-                    {blogs.map((blog) => (
-                        <Blog key={blog.id} blog={blog} />
-                    ))}
+                    {blogs
+                        .filter(categoryFilterFn)
+                        .filter(authorFilterFn)
+                        .map((blog) => (
+                            <Blog
+                                key={blog.id}
+                                blog={blog}
+                                filterByCategoryHandler={filterByCategoryHandler}
+                                filterByAuthorHandler={filterByAuthorHandler}
+                            />
+                        ))}
                 </div>
             </div>
         </section>

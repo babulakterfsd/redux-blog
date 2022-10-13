@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 
-function Blog({ blog }) {
+function Blog({ blog, filterByCategoryHandler, filterByAuthorHandler }) {
     const { blogImg, category, title, date, timeToRead, author, authorImg } = blog;
 
     return (
@@ -11,7 +12,10 @@ function Blog({ blog }) {
 
             <div className="flex-1 bg-white p-6 flex flex-col justify-between">
                 <div className="flex-1">
-                    <p className="text-sm font-medium text-indigo-600">
+                    <p
+                        className="text-sm font-medium text-indigo-600"
+                        onClick={() => filterByCategoryHandler(category)}
+                    >
                         <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 cursor-pointer">
                             {category}
                         </span>
@@ -22,10 +26,18 @@ function Blog({ blog }) {
                 </div>
                 <div className="mt-6 flex items-center">
                     <div className="flex-shrink-0 cursor-pointer">
-                        <img className="h-10 w-10 rounded-full" src={authorImg} alt="" />
+                        <img
+                            className="h-10 w-10 rounded-full"
+                            src={authorImg}
+                            alt=""
+                            onClick={() => filterByAuthorHandler(author)}
+                        />
                     </div>
                     <div className="ml-3">
-                        <p className="text-sm cursor-pointer font-medium text-gray-900 hover:underline">
+                        <p
+                            className="text-sm cursor-pointer font-medium text-gray-900 hover:underline"
+                            onClick={() => filterByAuthorHandler(author)}
+                        >
                             {author}
                         </p>
                         <div className="flex space-x-1 text-sm text-gray-500">
