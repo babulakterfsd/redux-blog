@@ -7,7 +7,7 @@ const initialState = [
         date: '23 April 2020',
         timeToRead: '5 min read',
         author: 'Learn with Sumit',
-        authorImg: 'https://i.ibb.co/n8Y0Q01/authimg-1.jpg',
+        authorImg: 'https://i.ibb.co/R0YHRH4/authimg-1.jpg',
     },
     {
         id: 2,
