@@ -1,10 +1,16 @@
 import React from 'react';
-import Shop from '../components/Shop';
+import Blogs from '../components/Blogs';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Navbar from '../components/Navbar';
 
 function Home() {
     return (
         <div>
-            <Shop />
+            <Navbar />
+            <Header />
+            <Blogs />
+            <Footer />
         </div>
     );
 }
