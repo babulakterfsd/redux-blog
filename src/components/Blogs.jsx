@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Blog from './Blog';
 
 function Blogs() {
+    const blogs = useSelector((state) => state.blogs);
+
     return (
         <section className="relative bg-gray-50 pt-8 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-16 lg:px-8">
             <div className="absolute inset-0">
@@ -19,8 +22,8 @@ function Blogs() {
                 </div>
 
                 <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-                    {[0, 1, 2].map(() => (
-                        <Blog key={Math.floor(Math.random() * 19)} />
+                    {blogs.map((blog) => (
+                        <Blog key={blog.id} blog={blog} />
                     ))}
                 </div>
             </div>
