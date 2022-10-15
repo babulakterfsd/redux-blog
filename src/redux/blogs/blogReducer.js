@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 
 const initialState = [
@@ -53,11 +54,6 @@ const initialState = [
     },
 ];
 
-const blogReducer = (state = initialState, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-};
+const blogReducer = (state = initialState, action) => state;
 
 export default blogReducer;
