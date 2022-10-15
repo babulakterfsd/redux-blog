@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { filterBySearch } from '../redux/filters/actions';
+import debounce from '../utils/commonFunctions';
 
 function Header() {
     const [searchText, setSearchText] = useState('');
     const dispatch = useDispatch();
 
+    const debouncedSearch = useCallback(
+        debounce((searchVal) => dispatch(filterBySearch(searchVal)), 500),
+        []
+    );
+
     const handleSearch = (e) => {
         setSearchText(e.target.value);
-        dispatch(filterBySearch(searchText));
+        setTimeout(() => {
+            debouncedSearch(e.target.value);
+        }, 500);
     };
 
     return (
